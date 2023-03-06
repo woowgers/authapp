@@ -1,0 +1,32 @@
+{% extends 'base.j2' %}
+{% block title %} Register {% endblock %}
+{% block content %}
+  <h2>Register a new user</h2>
+  <form method=POST>
+    <label for=user-type>User type:</label>
+    <select name=user-type selected=customer>
+      <option value=customer>Customer</option>
+      {% if user and user.is_admin %}
+        <option value=cashier>Cashier</option>
+        <option value=admin>Administrator</option>
+      {% else %}
+        <option value=cashier disabled>Cashier</option>
+        <option value=admin disabled>Administrator</option>
+      {% endif %}
+    </select>
+
+    <p><label for=email>Email:</label><br>
+    <input name=email type=text></input>
+
+    <p><label for=username>Username:</label><br>
+    <input name=username type=text></input>
+
+    <p><label for=password>Password:</label><br>
+    <input name=password type=password></input>
+
+    <p><label for=password-again>Password again:</label><br>
+    <input name=repeat-password type=password></input>
+
+    <br><p><input type=submit value=Register></input>
+  </form>
+{% endblock %}

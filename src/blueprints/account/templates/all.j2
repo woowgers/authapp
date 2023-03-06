@@ -1,0 +1,23 @@
+{% extends 'base.j2' %}
+{% block title %} Account {% endblock %}
+
+{% block content %}
+  {% if users|length > 0 %}
+    <table>
+      <th> ID </th>
+      <th> Type </th>
+      <th> Email </th>
+      <th> Name </th>
+      <th> Password hash </th>
+      {% for user_ in users %}
+        <tr>
+          <td> <a href="{{ url_for('accounts.nth', user_id=user_.user_id) }}"> {{ user_.user_id }} </a> </td>
+          <td> {{ user_.type }} </td>
+          <td> {{ user_.email }} </td>
+          <td> {{ user_.name }} </td>
+          <td> {{ user_.pw_hash }} </td>
+        <tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+{% endblock %}

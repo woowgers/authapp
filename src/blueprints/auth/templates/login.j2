@@ -1,0 +1,13 @@
+{% extends 'base.j2' %}
+{% block title %}Log In{% endblock %}
+{% block content %}
+    <h2>Log in</h2>
+    <form method=POST>
+        <p><label for=email>Email:</label><br>
+        <input name=email type=text></input>
+        <p><label for=password>Password:</label><br>
+        <input name=password type=password></input>
+        <br><p><input type=submit value='Log In'></input>
+    </form>
+    <p>{{ go_home() }}
+{% endblock %}

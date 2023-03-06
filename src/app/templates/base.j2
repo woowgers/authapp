@@ -1,0 +1,46 @@
+<!doctype html>
+{% from 'macros.j2' import go_home %}
+<html>
+<head>
+	<meta charset='UTF-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='icon.png') }}">
+  <title>{% block title %}{% endblock %} - AuthApp</title>
+</head>
+<body>
+
+    {% with errors = get_flashed_messages(category_filter=['error']) %}
+        {% if errors %}
+            <div class=error-container>
+                {% for error in errors %}
+                    <div class=error-item> ❌ {{ error }} </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% with successes = get_flashed_messages(category_filter=['success']) %}
+        {% if successes %}
+            <div class=success-container>
+                {% for success in successes %}
+                    <div class=message-item> ✅{{ success }} </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% with messages = get_flashed_messages(category_filter=['message']) %}
+        {% if messages %}
+            <div class=message-container>
+                {% for message in messages %}
+                    <div class=message-item> {{ message }} </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

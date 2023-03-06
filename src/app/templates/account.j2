@@ -1,0 +1,26 @@
+{% extends 'base.j2' %}
+{% block title %} Account {% endblock %}
+{% block content %}
+  {% with user = session.get('user') %}
+    <h2>
+          {% if user.name[-1] in ('s', 'z') %}
+              {{ user.name }}' account
+          {% else %}
+              {{ user.name }}'s account
+          {% endif %}
+    </h2>
+
+    <p>Your user type:
+        <input type=text readonly value={{ user.type }}></input>
+
+    <p>{{ go_home() }}
+
+    <p><form method=POST action=/account/logout>
+        <input type=submit value="Log Out"></input>
+    </form>
+
+    <p><form method=POST action='/account/delete'>
+        <input type=submit value="Delete my account"></input>
+    </form>
+  {% endwith %}
+{% endblock %}

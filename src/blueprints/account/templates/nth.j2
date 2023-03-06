@@ -1,0 +1,22 @@
+{% extends 'base.j2' %}
+{% block title %} Account {% endblock %}
+{% block content %}
+    <h2>
+          {% if user.name[-1] in ('s', 'z') %}
+              {{ user.name }}' account
+          {% else %}
+              {{ user.name }}'s account
+          {% endif %}
+    </h2>
+
+    <p>User type:
+        <input type=text readonly value={{ user.type }}></input>
+
+    <p>{{ go_home() }}
+
+    <p>
+    <form action='/accounts/{{ user.id }}/delete' method='DELETE'>
+        <input type=submit value='Delete account'></input>
+    </form>
+{% endblock %}
+
